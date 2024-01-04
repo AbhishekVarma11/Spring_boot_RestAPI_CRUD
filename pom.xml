@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.springBoot</groupId>
 	<artifactId>RestProject</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>RestProject</name>
 	<description>Demo project for Spring Boot Rest API</description>
 	<properties>
