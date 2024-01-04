@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.springBoot.RestProject.entity.Department;
 import com.springBoot.RestProject.repository.DepartmentRepository;
 
+import Exceptions.DepartmentNotFound;
+
 @Service
 public class DepartmentServiceImpl implements DepartmentService{
 	
@@ -23,13 +25,17 @@ public class DepartmentServiceImpl implements DepartmentService{
 		return departmentRespository.findAll();
 		
 	}
-	public Department fetchDepartmentByID(Long departmentId) {
-		return departmentRespository.findById(departmentId).get();
+	public Department fetchDepartmentByID(Long departmentId) throws DepartmentNotFound {
+		Optional<Department> department=departmentRespository.findById(departmentId);
+		if(!department.isPresent())
+		{
+			throw new DepartmentNotFound("Department is not available");
+		}
+		return department.get();
 	}
 	
 	public void deleteDepartmentByID(Long departmentId) {
 		departmentRespository.deleteById(departmentId);
-		
 		
 	}
 	
