@@ -15,6 +15,7 @@ import com.springBoot.RestProject.Controllers.DepartmentController;
 import com.springBoot.RestProject.entity.ErrorMessage;
 
 @ControllerAdvice
+@ResponseStatus
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 	private final Logger logger=LoggerFactory.getLogger(RestResponseEntityExceptionHandler.class);
     @ExceptionHandler(DepartmentNotFound.class)
