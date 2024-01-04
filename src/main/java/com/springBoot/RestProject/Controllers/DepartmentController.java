@@ -42,10 +42,14 @@ public class DepartmentController {
 		return departmentService.fetchDepartmentList();
 	}
 	@GetMapping("/departments/{id}")
-	public Department fetchDepartmentByID(@PathVariable("id")Long departmentId) throws DepartmentNotFound
-	{
-		logger.info("inside the fetchDepartmentbyID method");
-		return departmentService.fetchDepartmentByID(departmentId);
+	public Department fetchDepartmentByID(@PathVariable("id") Long departmentId) throws DepartmentNotFound {
+	    logger.info("Inside the fetchDepartmentByID method");
+	    try {
+	        return departmentService.fetchDepartmentByID(departmentId);
+	    } catch (DepartmentNotFound ex) {
+	        logger.error("DepartmentNotFound exception caught: {}", ex.getMessage());
+	        throw ex; // Ensure the exception is propagated to the controller advice
+	    }
 	}
 	@DeleteMapping("/departments/{id}")
 	public String deleteDepartmentByID(@PathVariable("id")Long departmentId)
